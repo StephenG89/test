@@ -4,7 +4,7 @@ import time
 pygame.init()
 
 # Set the path to your MP3 file
-file_path = "/path/to/your/file.mp3"
+file_path = "gitRepos/test/101 The Prelude.mp3"
 
 try:
     pygame.mixer.init()
