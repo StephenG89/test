@@ -1,22 +1,37 @@
 import pygame
+import RPi.GPIO as GPIO
 import time
-
-pygame.init()
 
 # Set the path to your MP3 file
 file_path = "Prelude.mp3"
 
-try:
-    pygame.mixer.init()
+# Set the GPIO pin for the button
+button_pin = 18  # Replace with the actual GPIO pin number
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(button_pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+
+pygame.init()
+pygame.mixer.init()
+
+def play_audio():
     pygame.mixer.music.load(file_path)
     pygame.mixer.music.play()
 
-    # Add a delay to ensure the MP3 plays
-    time.sleep(30)  # Adjust the sleep time based on your MP3's duration
+def stop_audio():
+    pygame.mixer.music.stop()
 
-except pygame.error as e:
-    print("Error:", e)
+try:
+    while True:
+        button_state = GPIO.input(button_pin)
+        if button_state == GPIO.LOW:  # Button pressed
+            play_audio()
+            time.sleep(1)  # Debounce delay to prevent multiple triggers
+
+except KeyboardInterrupt:
+    pass
 
 finally:
-    pygame.mixer.music.stop()
+    stop_audio()
+    GPIO.cleanup()
     pygame.quit()
