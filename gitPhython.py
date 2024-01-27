@@ -4,6 +4,8 @@ import os
 # Set the path to your MP3 file (relative to the script)
 file_path = "Prelude.mp3"
 
+volume = 0.5
+
 pygame.init()
 pygame.mixer.init()
 
