@@ -1,21 +1,22 @@
-
-import RPi.GPIO as GPIO
+import pygame
 import time
 
-GPIO.setmode(GPIO.BCM)
+pygame.init()
 
-# Set the GPIO pin you are using
-pwm_pin = 18
-
-GPIO.setup(pwm_pin, GPIO.OUT)
-pwm = GPIO.PWM(pwm_pin, 640)  # 440 Hz frequency (adjust as needed)
+# Set the path to your MP3 file
+file_path = "/path/to/your/file.mp3"
 
 try:
-    pwm.start(50)  # 50% duty cycle (adjust as needed)
+    pygame.mixer.init()
+    pygame.mixer.music.load(file_path)
+    pygame.mixer.music.play()
 
-    # Run for a certain duration (e.g., 5 seconds)
-    time.sleep(5)
+    # Add a delay to ensure the MP3 plays
+    time.sleep(30)  # Adjust the sleep time based on your MP3's duration
+
+except pygame.error as e:
+    print("Error:", e)
 
 finally:
-    pwm.stop()
-    GPIO.cleanup()
+    pygame.mixer.music.stop()
+    pygame.quit()
