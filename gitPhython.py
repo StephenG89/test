@@ -3,7 +3,7 @@ import RPi.GPIO as GPIO
 import time
 
 # Set the path to your MP3 file
-file_path = "gitRepos/test/Prelude.mp3"
+file_path = "./Prelude.mp3"
 
 # Set the GPIO pin for controlling audio
 audio_control_pin = 18  # Replace with the actual GPIO pin number
