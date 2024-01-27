@@ -8,7 +8,7 @@ GPIO.setmode(GPIO.BCM)
 pwm_pin = 18
 
 GPIO.setup(pwm_pin, GPIO.OUT)
-pwm = GPIO.PWM(pwm_pin, 440)  # 440 Hz frequency (adjust as needed)
+pwm = GPIO.PWM(pwm_pin, 640)  # 440 Hz frequency (adjust as needed)
 
 try:
     pwm.start(50)  # 50% duty cycle (adjust as needed)
