@@ -7,7 +7,7 @@ pygame.init()
 pygame.mixer.init()
 
 # Set the path to a test MP3 file (replace with an actual file path)
-file_path = "your_test_file.mp3"
+file_path = "Fanfare.mp3"
 
 try:
     pygame.mixer.music.load(file_path)
