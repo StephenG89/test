@@ -2,6 +2,7 @@ import RPi.GPIO as GPIO
 import time
 import pygame
 from pydbus import SystemBus
+import os
 
 # Set the path to your MP3 file (replace with the actual path)
 file_path = "Fanfare.mp3"
@@ -33,7 +34,11 @@ def set_audio_sink(sink_name):
     core.SetDefaultSink(default_sink)
 
 pygame.init()
-pygame.mixer.init(driver='alsa')  # Explicitly set the ALSA driver
+
+# Set the ALSA device environment variable
+os.environ["SDL_AUDIODRIVER"] = "alsa"
+
+pygame.mixer.init()
 
 # Set up GPIO after initializing Pygame mixer
 GPIO.setmode(GPIO.BCM)
